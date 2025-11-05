@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
+
 int main()
 {
     pid_t pid;
@@ -16,11 +17,9 @@ int main()
     {
 
         
-        n++;
-        message = "\nThis is the parent";
-        printf("%s: %d", message, n);
         
-       
+        
+        
 
         if (pid < 0)
         {
@@ -31,16 +30,26 @@ int main()
         if (pid == 0)
         {
             sleep(1);
-            message = "\nThis is the child";
-            count_child++;
-            printf("%s: %d", message, count_child);
             
+            
+            printf("\nThis is child: %d", n);
+            n++;
+            
+        } else if (pid>0) {
+            
+            printf("\nThis is parent: %d", n);
+            n++;
         }
 
+        
         sleep(4);
+        
+       
+       
+        
         //kill(pid, SIGTERM); 
         
     }
 
-    exit(0);
+    
 }
